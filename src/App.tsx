@@ -1,25 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ChatSectionAI from './components/ChatSectionAI';
+import { BottomNav } from './components/BottomNav';
+import InsightDetail from './components/InsightDetail';
 import './App.css';
+import InsightsOverview from './components/InsightsOverview';
+import MissionCenter from './components/MissionCenter';
+import MissionPage from './components/MissionPage';
+import WeeklyRecap from './components/WeeklyRecap';
+import Progress from './components/Progress';
+import WeeklyLesson from './components/WeeklyLesson';
+import QNBTools from './components/QNBTools';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <main className="pb-16 md:pb-0">
+          <Routes>
+            <Route path="/" element={<ChatSectionAI />} />
+            <Route path="/insights" element={<InsightsOverview />} />
+            <Route path="/insights/:category" element={<InsightDetail />} />
+            <Route path="/lessons" element={<WeeklyLesson />} />
+            <Route path="/missions" element={<MissionCenter />} />
+            <Route path="/missions/:category" element={<MissionPage />} />
+            <Route path="/progress" element={<WeeklyRecap />} />
+            <Route path="/profile" element={<Progress />} />
+            <Route path="/partner" element={<QNBTools />} />
+          </Routes>
+        </main>
+        <BottomNav />
+      </div>
+    </Router>
   );
 }
 
