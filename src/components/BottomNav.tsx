@@ -6,8 +6,8 @@ import { useState } from "react";
 const navItems = [
   { name: "Home", icon: Home, path: "/" },
   { name: "Insights", icon: Sparkles, path: "/insights" },
-  { name: "Lessons", icon: BookOpen, path: "/lessons" },
   { name: "Missions", icon: Target, path: "/missions" },
+  { name: "Lessons", icon: BookOpen, path: "/lessons" },
   { name: "Progress", icon: BarChart, path: "/progress" },
 ];
 

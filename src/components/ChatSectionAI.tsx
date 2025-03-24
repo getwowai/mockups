@@ -144,8 +144,8 @@ export default function ChatSectionAI() {
             <p className="font-medium mb-2">Try asking:</p>
             <div className="flex flex-wrap gap-2">
               {[
-                "Which of my products had the highest conversion rate last month?",
-                "What are the top reasons customers contacted support recently?",
+                "Which products had the highest conversion rate?",
+                "What are the top reasons customers requested support?",
                 "Which day of the week do I get the most sales?"
               ].map((prompt, index) => (
                 <Button
