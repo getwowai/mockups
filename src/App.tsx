@@ -9,7 +9,7 @@ import MissionCenter from './components/MissionCenter';
 import MissionPage from './components/MissionPage';
 import WeeklyRecap from './components/WeeklyRecap';
 import Progress from './components/Progress';
-import WeeklyLesson from './components/WeeklyLesson';
+import LessonsPage from './components/LessonsPage';
 import QNBTools from './components/QNBTools';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
             <Route path="/" element={<ChatSectionAI />} />
             <Route path="/insights" element={<InsightsOverview />} />
             <Route path="/insights/:category" element={<InsightDetail />} />
-            <Route path="/lessons" element={<WeeklyLesson />} />
+            <Route path="/lessons" element={<LessonsPage />} />
             <Route path="/missions" element={<MissionCenter />} />
             <Route path="/missions/:category" element={<MissionPage />} />
             <Route path="/progress" element={<WeeklyRecap />} />

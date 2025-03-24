@@ -1,8 +1,6 @@
 import { Card, CardContent } from "./ui/card";
-import { Bell, ChevronDown, ChevronUp } from "lucide-react";
+import { Bell } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import Benchmarking from "./Benchmarking";
 
 interface InsightCategory {
   title: string;
@@ -51,39 +49,12 @@ const insightCategories: InsightCategory[] = [
 ];
 
 export default function InsightsOverview() {
-  const [showBenchmarking, setShowBenchmarking] = useState(false);
-
   return (
     <div className="p-4 max-w-sm mx-auto space-y-6">
       <div className="text-center space-y-1">
         <h1 className="text-xl font-bold">📊 Your Insights</h1>
         <p className="text-sm text-muted-foreground">Explore AI insights by category</p>
       </div>
-
-      {/* Benchmarking Toggle */}
-      <Card className="border border-indigo-200">
-        <CardContent className="p-4">
-          <button
-            onClick={() => setShowBenchmarking(!showBenchmarking)}
-            className="w-full flex items-center justify-between text-left"
-          >
-            <div className="flex items-center gap-2">
-              <span className="text-lg">📈</span>
-              <span className="font-semibold">Store Benchmarking</span>
-            </div>
-            {showBenchmarking ? (
-              <ChevronUp size={20} className="text-indigo-600" />
-            ) : (
-              <ChevronDown size={20} className="text-indigo-600" />
-            )}
-          </button>
-          {showBenchmarking && (
-            <div className="mt-4 pt-4 border-t">
-              <Benchmarking />
-            </div>
-          )}
-        </CardContent>
-      </Card>
 
       {/* Insights Categories */}
       <div className="grid grid-cols-1 gap-4">

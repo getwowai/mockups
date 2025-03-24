@@ -4,12 +4,7 @@ import { BookOpen, CheckCircle, Star, Target, Award } from "lucide-react";
 
 export default function WeeklyLesson() {
   return (
-    <div className="p-6 max-w-2xl mx-auto space-y-6">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold">📚 Weekly Learning Progress</h1>
-        <p className="text-muted-foreground">Track your learning journey and achievements</p>
-      </div>
-
+    <div className="space-y-6">
       <Card>
         <CardContent className="space-y-4 p-6">
           <h2 className="text-lg font-semibold">✅ Lessons Completed: <span className="text-primary">3</span></h2>

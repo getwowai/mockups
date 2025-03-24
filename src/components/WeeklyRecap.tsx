@@ -1,14 +1,42 @@
 import * as React from "react";
 import { Card, CardContent } from "./ui/card";
-import { Flame, Trophy, CheckCircle } from "lucide-react";
+import { Flame, Trophy, CheckCircle, ChevronDown, ChevronUp } from "lucide-react";
+import Benchmarking from "./Benchmarking";
 
 export default function WeeklyRecap() {
+  const [showBenchmarking, setShowBenchmarking] = React.useState(false);
+
   return (
     <div className="p-6 max-w-2xl mx-auto space-y-6">
       <div className="text-center">
         <h1 className="text-2xl font-bold">📬 Weekly Recap</h1>
         <p className="text-muted-foreground">Here's how your team performed this week</p>
       </div>
+
+      {/* Benchmarking Toggle */}
+      <Card className="border border-indigo-200">
+        <CardContent className="p-4">
+          <button
+            onClick={() => setShowBenchmarking(!showBenchmarking)}
+            className="w-full flex items-center justify-between text-left"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-lg">📈</span>
+              <span className="font-semibold">Store Benchmarking</span>
+            </div>
+            {showBenchmarking ? (
+              <ChevronUp size={20} className="text-indigo-600" />
+            ) : (
+              <ChevronDown size={20} className="text-indigo-600" />
+            )}
+          </button>
+          {showBenchmarking && (
+            <div className="mt-4 pt-4 border-t">
+              <Benchmarking />
+            </div>
+          )}
+        </CardContent>
+      </Card>
 
       <Card>
         <CardContent className="space-y-4 p-6">

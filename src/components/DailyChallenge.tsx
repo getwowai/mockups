@@ -31,12 +31,7 @@ export default function DailyChallenge() {
   const isCorrect = selected === correctAnswer;
 
   return (
-    <div className="p-6 max-w-xl mx-auto space-y-6">
-      <div className="text-center space-y-1">
-        <h1 className="text-2xl font-bold">🎯 Daily Challenge</h1>
-        <p className="text-muted-foreground">Sharpen your store smarts with one quick challenge a day</p>
-      </div>
-
+    <div className="space-y-6">
       {/* Challenge Card */}
       <Card>
         <CardContent className="space-y-4 p-6">
