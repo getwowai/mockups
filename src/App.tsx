@@ -11,12 +11,14 @@ import WeeklyRecap from './components/WeeklyRecap';
 import Progress from './components/Progress';
 import LessonsPage from './components/LessonsPage';
 import QNBTools from './components/QNBTools';
+import Header from './components/Header';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <main className="pb-16 md:pb-0">
+      <div className="App min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 pb-16 md:pb-0">
           <Routes>
             <Route path="/" element={<ChatSectionAI />} />
             <Route path="/insights" element={<InsightsOverview />} />
