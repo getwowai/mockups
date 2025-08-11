@@ -56,11 +56,20 @@ export default function ChatSectionAI() {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto space-y-6">
-      <div className="text-center space-y-1">
-        <h1 className="text-2xl font-bold">🤖 Ask Your WoW Assistant</h1>
-        <p className="text-muted-foreground">Get insights, ideas, and answers based on your store data</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-indigo-600 text-white py-5 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-1">🤖 Ask Your WoW Assistant</h1>
+        <p className="text-indigo-100 text-sm">
+          Get insights, ideas, and answers based on your store data with AI-powered assistance.
+        </p>
       </div>
+
+      <div className="p-6 max-w-3xl mx-auto space-y-6">
+        <div className="text-center space-y-1">
+          <h2 className="text-2xl font-bold text-foreground">AI Chat & Learning</h2>
+          <p className="text-muted-foreground">Ask questions to discover insights and grow your business</p>
+        </div>
 
       {/* Gamified Streak Level Meter */}
       <Card>
@@ -172,6 +181,7 @@ export default function ChatSectionAI() {
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 } 

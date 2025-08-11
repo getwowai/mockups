@@ -43,11 +43,21 @@ export default function Progress() {
   const progress = view === "week" ? progressData.week : progressData.all;
 
   return (
-    <div className="p-6 max-w-5xl mx-auto space-y-8">
-      {/* Header with Tabs */}
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold text-indigo-700">🏆 Sherif, Here is Your Progress</h1>
-        <p className="text-muted-foreground">Here's what you've achieved and what's next</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-indigo-600 text-white py-5 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-1">🏆 Your Progress</h1>
+        <p className="text-indigo-100 text-sm">
+          Track your achievements, badges, and learning milestones across all activities.
+        </p>
+      </div>
+
+      <div className="p-6 max-w-5xl mx-auto space-y-8">
+        {/* Header with Tabs */}
+        <div className="text-center space-y-2">
+          <h2 className="text-3xl font-bold text-foreground">Sherif, Here is Your Progress</h2>
+          <p className="text-muted-foreground">Review what you've achieved and what's next</p>
+        </div>
         <div className="flex justify-center gap-4 mt-4">
           <button
             className={`px-4 py-1 rounded-full text-sm font-medium ${view === "week" ? "bg-indigo-600 text-white" : "bg-gray-200 text-gray-700"}`}

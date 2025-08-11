@@ -11,11 +11,20 @@ export default function LessonsPage() {
   const [showDailyChallenge, setShowDailyChallenge] = React.useState(false);
 
   return (
-    <div className="p-4 sm:p-6 w-full max-w-2xl mx-auto space-y-4 sm:space-y-6">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold">📚 Learning Center</h1>
-        <p className="text-muted-foreground">Your personalized learning journey</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-indigo-600 text-white py-5 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-1">📚 Learning Center</h1>
+        <p className="text-indigo-100 text-sm">
+          Your personalized learning journey to master e-commerce and grow your business.
+        </p>
       </div>
+
+      <div className="p-4 sm:p-6 w-full max-w-2xl mx-auto space-y-4 sm:space-y-6">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-foreground">Learning Modules</h2>
+          <p className="text-muted-foreground">Expand each section to dive deeper</p>
+        </div>
 
       {/* Current Weekly Lesson */}
       <Card className="border border-indigo-200 w-full">
@@ -94,6 +103,7 @@ export default function LessonsPage() {
           )}
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 } 

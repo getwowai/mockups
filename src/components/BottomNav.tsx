@@ -1,4 +1,4 @@
-import { Home, BookOpen, Target, BarChart, User, Sparkles, ChevronDown } from "lucide-react";
+import { Home, BookOpen, Target, BarChart, User, Sparkles, ChevronDown, Bot } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "../lib/utils";
 import { useState } from "react";
@@ -6,6 +6,7 @@ import { useState } from "react";
 const navItems = [
   { name: "Home", icon: Home, path: "/" },
   { name: "Insights", icon: Sparkles, path: "/insights" },
+  { name: "Agents", icon: Bot, path: "/agents" },
   { name: "Missions", icon: Target, path: "/missions" },
   { name: "Lessons", icon: BookOpen, path: "/lessons" },
   { name: "Progress", icon: BarChart, path: "/progress" },

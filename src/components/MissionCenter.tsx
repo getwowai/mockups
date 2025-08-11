@@ -65,11 +65,20 @@ const getBadgeStyle = (importance: Mission["importance"]): string => {
 
 export default function MissionCenter() {
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-6">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold">🎯 Your Mission Center</h1>
-        <p className="text-muted-foreground">Track all your missions by category, status, and importance</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-indigo-600 text-white py-5 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-1">🎯 Your Mission Center</h1>
+        <p className="text-indigo-100 text-sm">
+          Track all your missions by category, status, and importance to achieve your goals.
+        </p>
       </div>
+
+      <div className="p-6 max-w-4xl mx-auto space-y-6">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-foreground">Mission Categories</h2>
+          <p className="text-muted-foreground">Organize and prioritize your action items</p>
+        </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {missionCategories.map((category, index) => (
@@ -104,6 +113,7 @@ export default function MissionCenter() {
             </Card>
           </Link>
         ))}
+      </div>
       </div>
     </div>
   );

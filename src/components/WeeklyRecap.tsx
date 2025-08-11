@@ -7,11 +7,20 @@ export default function WeeklyRecap() {
   const [showBenchmarking, setShowBenchmarking] = React.useState(false);
 
   return (
-    <div className="p-6 max-w-2xl mx-auto space-y-6">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold">📬 Weekly Recap</h1>
-        <p className="text-muted-foreground">Here's how your team performed this week</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-indigo-600 text-white py-5 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-1">📬 Weekly Recap</h1>
+        <p className="text-indigo-100 text-sm">
+          Review your team's performance, achievements, and progress from this week.
+        </p>
       </div>
+
+      <div className="p-6 max-w-2xl mx-auto space-y-6">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-foreground">Performance Summary</h2>
+          <p className="text-muted-foreground">Track your wins and plan for next week</p>
+        </div>
 
       {/* Benchmarking Toggle */}
       <Card className="border border-indigo-200">
@@ -104,6 +113,7 @@ export default function WeeklyRecap() {
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 } 

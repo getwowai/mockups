@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agents for Repetitive Tasks – WowAI</title>
+  <style>
+    /* --- Very light, subtle palette --- */
+    :root{
+      --brand:#a8d5ba;           /* light green buttons */
+      --brand-dark:#4b6b55;      /* headings/text */
+      --bg:#f9fafb;              /* app bg */
+      --card:#ffffff;            /* card bg */
+      --border:#e5e7eb;          /* borders */
+      --muted:#6b7280;           /* secondary text */
+      --badge-green-bg:#f5fdf7;  --badge-green-text:#4b6b55; --badge-green-bd:#d8f0dd;
+      --badge-yellow-bg:#fffdf2; --badge-yellow-text:#8a6a00; --badge-yellow-bd:#fff4cc;
+      --badge-red-bg:#fff8f8;    --badge-red-text:#b71c1c;   --badge-red-bd:#ffe1e1;
+      --badge-gray-bg:#f9fafb;   --badge-gray-text:#374151;  --badge-gray-bd:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"; background:var(--bg); color:var(--brand-dark)}
+    /* Header */
+    header{background:var(--brand-dark); color:#fff; padding:20px; text-align:center}
+    header h1{margin:0 0 6px; font-size:24px; font-weight:700}
+    header p{margin:0; opacity:.9; font-size:14px}
+    /* Layout */
+    .container{max-width:1080px; margin:0 auto; padding:28px 20px}
+    .page-head{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin-bottom:18px}
+    .title{font-size:24px; font-weight:700; color:var(--brand-dark)}
+    .subtitle{font-size:14px; color:var(--muted)}
+    .pill{background:#f5fdf7; color:var(--brand-dark); border-radius:999px; padding:6px 10px; font-size:12px; border:1px solid #d8f0dd}
+    /* Toolbar */
+    .toolbar{display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:14px 0 24px}
+    input[type="search"], select{background:#fff; border:1px solid var(--border); border-radius:8px; padding:10px 12px; font-size:14px; color:var(--brand-dark)}
+    input[type="search"]{min-width:240px}
+    /* Cards */
+    .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:16px}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; box-shadow:0 1px 2px rgba(16,24,40,0.04)}
+    .card:focus-within, .card:hover{outline:2px solid #eef8f1; outline-offset:2px; transition:outline .15s ease}
+    .card-head{display:flex; justify-content:space-between; gap:8px; align-items:flex-start; margin-bottom:8px}
+    .agent-name{font-weight:700; font-size:16px; display:flex; gap:6px; align-items:center; color:var(--brand-dark)}
+    .agent-desc{font-size:13px; color:var(--muted); margin:6px 0 10px; line-height:1.5}
+    .row{display:flex; justify-content:space-between; align-items:center; gap:8px}
+    .kpi{font-size:13px; font-weight:600; color:#111827}
+    .meta{font-size:12px; color:var(--muted)}
+    .actions{display:flex; gap:8px; margin-top:12px; flex-wrap:wrap}
+    button{background:var(--brand); color:var(--brand-dark); border:1px solid var(--brand); border-radius:8px; padding:8px 12px; font-size:13px; cursor:pointer}
+    button.secondary{background:#fff; color:var(--brand-dark); border:1px solid var(--border)}
+    button:focus{outline:2px solid #e9f7ee; outline-offset:2px}
+    /* Badges */
+    .badge{font-size:11px; padding:4px 8px; border-radius:999px; border:1px solid}
+    .green{background:var(--badge-green-bg); color:var(--badge-green-text); border-color:var(--badge-green-bd)}
+    .yellow{background:var(--badge-yellow-bg); color:var(--badge-yellow-text); border-color:var(--badge-yellow-bd)}
+    .red{background:var(--badge-red-bg); color:var(--badge-red-text); border-color:var(--badge-red-bd)}
+    .gray{background:var(--badge-gray-bg); color:var(--badge-gray-text); border-color:var(--badge-gray-bd)}
+    /* Footer actions */
+    .section-title{margin:28px 0 10px; font-weight:700; font-size:18px; color:var(--brand-dark)}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Agents for Repetitive Tasks</h1>
+    <p>Automate routine work across inventory, pricing, fulfillment, finance, and more.</p>
+  </header>
+
+  <main class="container">
+    <section class="page-head" aria-label="Header">
+      <div>
+        <div class="title">Your Agents</div>
+        <div class="subtitle">Configure, run, and review specialized agents that handle repeated workflows.</div>
+      </div>
+      <div class="pill" aria-live="polite">Setup progress: 3 / 5 agents configured</div>
+    </section>
+
+    <section class="toolbar" aria-label="Filters">
+      <input type="search" placeholder="Search agents…" aria-label="Search agents" />
+      <select aria-label="Filter by status">
+        <option>All statuses</option>
+        <option>Active</option>
+        <option>Scheduled</option>
+        <option>Paused</option>
+        <option>Needs setup</option>
+      </select>
+      <select aria-label="Category">
+        <option>All categories</option>
+        <option>Inventory</option>
+        <option>Pricing</option>
+        <option>Promotions</option>
+        <option>Fulfillment</option>
+        <option>Finance</option>
+        <option>Customers</option>
+      </select>
+      <span class="pill">Tip: You can pause an agent anytime</span>
+    </section>
+
+    <section class="grid" aria-label="Agents list">
+      <!-- Inventory Agent -->
+      <article class="card" tabindex="0">
+        <div class="card-head">
+          <div class="agent-name">📦 Inventory & Supply Chain</div>
+          <span class="badge green">Active</span>
+        </div>
+        <p class="agent-desc">Flags low stock, suggests restocks, and identifies slow movers based on velocity.</p>
+        <div class="row">
+          <div class="kpi">⚠️ 6 SKUs need restock</div>
+          <div class="meta">Last run: 2h ago</div>
+        </div>
+        <div class="actions">
+          <button>View details</button>
+          <button class="secondary">Run now</button>
+          <button class="secondary">Settings</button>
+        </div>
+      </article>
+
+      <!-- Offers & Promotions Agent -->
+      <article class="card" tabindex="0">
+        <div class="card-head">
+          <div class="agent-name">🎯 Offers & Promotions</div>
+          <span class="badge green">Active</span>
+        </div>
+        <p class="agent-desc">Ranks promo codes by net revenue and flags high-return promotions.</p>
+        <div class="row">
+          <div class="kpi">🏷️ Best code: +31% AOV</div>
+          <div class="meta">Last run: 3h ago</div>
+        </div>
+        <div class="actions">
+          <button>View details</button>
+          <button class="secondary">Run now</button>
+          <button class="secondary">Settings</button>
+        </div>
+      </article>
+
+      <!-- Pricing Strategist Agent -->
+      <article class="card" tabindex="0">
+        <div class="card-head">
+          <div class="agent-name">💸 Pricing Strategist</div>
+          <span class="badge yellow">Scheduled</span>
+        </div>
+        <p class="agent-desc">Suggests price moves and markdowns; tracks elasticity and bundle uplift.</p>
+        <div class="row">
+          <div class="kpi">⬆️ 2 SKUs suggested ↑</div>
+          <div class="meta">Next run: in 6h</div>
+        </div>
+        <div class="actions">
+          <button>View details</button>
+          <button class="secondary">Run now</button>
+          <button class="secondary">Settings</button>
+        </div>
+      </article>
+
+      <!-- Fulfillment & Logistics Agent -->
+      <article class="card" tabindex="0">
+        <div class="card-head">
+          <div class="agent-name">🚚 Fulfillment & Logistics</div>
+          <span class="badge red">Paused</span>
+        </div>
+        <p class="agent-desc">Monitors unfulfilled orders, delays, and partner SLA performance.</p>
+        <div class="row">
+          <div class="kpi">📦 3 delayed orders</div>
+          <div class="meta">Paused 12h ago</div>
+        </div>
+        <div class="actions">
+          <button>View details</button>
+          <button class="secondary">Resume</button>
+          <button class="secondary">Settings</button>
+        </div>
+      </article>
+
+      <!-- Finance & Profitability Agent -->
+      <article class="card" tabindex="0">
+        <div class="card-head">
+          <div class="agent-name">🧾 Finance & Profitability</div>
+          <span class="badge green">Active</span>
+        </div>
+        <p class="agent-desc">Surfaces margin leaks, below-cost sales, and contribution by category.</p>
+        <div class="row">
+          <div class="kpi">💰 1 SKU sold below cost</div>
+          <div class="meta">Last run: 1h ago</div>
+        </div>
+        <div class="actions">
+          <button>View details</button>
+          <button class="secondary">Run now</button>
+          <button class="secondary">Settings</button>
+        </div>
+      </article>
+
+      <!-- Customer Care Signals Agent -->
+      <article class="card" tabindex="0">
+        <div class="card-head">
+          <div class="agent-name">💬 Customer Care Signals</div>
+          <span class="badge gray">Needs setup</span>
+        </div>
+        <p class="agent-desc">Analyzes support tags and NPS comments to surface product and CX issues.</p>
+        <div class="row">
+          <div class="kpi">✨ Setup to start insights</div>
+          <div class="meta">Connect: Helpdesk, NPS</div>
+        </div>
+        <div class="actions">
+          <button>Start setup</button>
+          <button class="secondary">Learn more</button>
+        </div>
+      </article>
+    </section>
+
+    <h2 class="section-title">Bulk actions</h2>
+    <div class="actions">
+      <button>Run all active</button>
+      <button class="secondary">Pause all</button>
+      <button class="secondary">Manage schedules</button>
+    </div>
+  </main>
+</body>
+</html>

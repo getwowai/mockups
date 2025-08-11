@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent – Supply Chain Manager | WowAI</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{
+      --brand:#a8d5ba;           /* light green buttons */
+      --brand-dark:#4b6b55;      /* headings/text */
+      --bg:#f9fafb;              /* app bg */
+      --card:#ffffff;            /* card bg */
+      --border:#e5e7eb;          /* borders */
+      --muted:#6b7280;           /* secondary text */
+      --badge-green-bg:#f5fdf7;  --badge-green-text:#4b6b55; --badge-green-bd:#d8f0dd;
+      --badge-yellow-bg:#fffdf2; --badge-yellow-text:#8a6a00; --badge-yellow-bd:#fff4cc;
+      --badge-red-bg:#fff8f8;    --badge-red-text:#b71c1c;   --badge-red-bd:#ffe1e1;
+      --badge-gray-bg:#f9fafb;   --badge-gray-text:#374151;  --badge-gray-bd:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji"; background:var(--bg); color:var(--brand-dark)}
+    header{background:var(--brand-dark); color:#fff; padding:20px}
+    header h1{margin:0 0 6px; font-size:22px}
+    header p{margin:0; opacity:.9; font-size:14px}
+    .container{max-width:1180px; margin:0 auto; padding:28px 20px}
+    .layout{display:grid; grid-template-columns: 2fr 1fr; gap:18px}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; box-shadow:0 1px 2px rgba(16,24,40,0.04)}
+    .card h2{margin:0 0 10px; font-size:18px}
+    .muted{color:var(--muted); font-size:13px}
+    .badge{font-size:11px; padding:4px 8px; border-radius:999px; border:1px solid}
+    .green{background:var(--badge-green-bg); color:var(--badge-green-text); border-color:var(--badge-green-bd)}
+    .yellow{background:var(--badge-yellow-bg); color:var(--badge-yellow-text); border-color:var(--badge-yellow-bd)}
+    .red{background:var(--badge-red-bg); color:var(--badge-red-text); border-color:var(--badge-red-bd)}
+    .gray{background:var(--badge-gray-bg); color:var(--badge-gray-text); border-color:var(--badge-gray-bd)}
+    .kpis{display:grid; grid-template-columns: repeat(4,1fr); gap:10px}
+    .kpi{background:#fff; border:1px solid var(--border); border-radius:10px; padding:12px}
+    .kpi .label{font-size:12px; color:var(--muted)}
+    .kpi .value{font-size:18px; font-weight:700; color:#1f2937}
+    .actions{display:flex; flex-wrap:wrap; gap:8px}
+    button{background:var(--brand); color:var(--brand-dark); border:1px solid var(--brand); border-radius:8px; padding:8px 12px; font-size:13px; cursor:pointer}
+    button.secondary{background:#fff; color:var(--brand-dark); border:1px solid var(--border)}
+    table{width:100%; border-collapse:collapse}
+    th, td{padding:10px; border-bottom:1px solid var(--border); font-size:13px; text-align:left}
+    th{background:#f8fafb; color:#374151}
+    .flag{display:inline-block; padding:2px 8px; border-radius:999px; font-size:11px; border:1px solid}
+    .flag.warn{background:#fff7ed; color:#9a3412; border-color:#fed7aa}
+    .flag.good{background:#ecfeff; color:#155e75; border-color:#a5f3fc}
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .list{display:grid; gap:8px}
+    .list .item{border:1px solid var(--border); border-radius:10px; padding:10px; background:#fff}
+    .section-title{margin:6px 0 10px; font-weight:700}
+    .log{max-height:220px; overflow:auto}
+    @media (max-width: 980px){
+      .layout{grid-template-columns:1fr}
+      .kpis{grid-template-columns: repeat(2,1fr)}
+      .grid-2{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Agent: Supply Chain Manager</h1>
+    <p>Automates repetitive work: monitor stock, predict shortages, recommend restocks, detect slow-movers, and optimize reorder points.</p>
+  </header>
+
+  <main class="container">
+    <!-- Top Overview -->
+    <section class="card" aria-label="Overview">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap">
+        <div>
+          <h2>Overview</h2>
+          <div class="muted">Status: <span class="badge green">Active</span> · Last run: 1h ago · Next run: today 18:00</div>
+        </div>
+        <div class="actions">
+          <button>Run now</button>
+          <button class="secondary">Settings</button>
+          <button class="secondary">Export report</button>
+        </div>
+      </div>
+      <div class="kpis" style="margin-top:12px">
+        <div class="kpi">
+          <div class="label">Low / OOS SKUs</div>
+          <div class="value">8</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Avg Days of Stock</div>
+          <div class="value">32</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Slow Movers</div>
+          <div class="value">5</div>
+        </div>
+        <div class="kpi">
+          <div class="label">At Risk (≤ 5 days)</div>
+          <div class="value">3</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <!-- LEFT: Alerts & Tables -->
+      <div class="stack">
+        <div class="card" aria-label="Alerts">
+          <h2>Critical Alerts</h2>
+          <div class="list">
+            <div class="item"><strong>SKU-1029</strong> will stockout in <strong>3 days</strong> based on 7‑day velocity. <span class="flag warn">Action required</span></div>
+            <div class="item"><strong>SKU-5512</strong> has <strong>120 days</strong> of inventory and <strong>0 sales</strong> in 14 days. Consider markdown or bundle. <span class="flag warn">Slow mover</span></div>
+            <div class="item"><strong>SKU-3399</strong> inventory aged <strong>90+ days</strong>. Storage risk flagged. <span class="flag warn">Aging</span></div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Restock Recommendations">
+          <h2>Restock Recommendations</h2>
+          <p class="muted">Formula: (Avg daily sales × Lead time) + Safety stock − Current inventory</p>
+          <table>
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Stock</th>
+                <th>Avg Daily</th>
+                <th>Days Left</th>
+                <th>Lead Time (d)</th>
+                <th>Safety</th>
+                <th>Recommended Qty</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SKU-1029</td><td>18</td><td>6</td><td>3</td><td>7</td><td>10</td><td><strong>34</strong></td>
+              </tr>
+              <tr>
+                <td>SKU-2044</td><td>22</td><td>4</td><td>5.5</td><td>10</td><td>12</td><td><strong>30</strong></td>
+              </tr>
+              <tr>
+                <td>SKU-7781</td><td>15</td><td>3</td><td>5</td><td>8</td><td>8</td><td><strong>17</strong></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="actions" style="margin-top:10px">
+            <button>Create PO draft</button>
+            <button class="secondary">Email supplier</button>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Slow Movers">
+          <h2>Slow‑Moving SKUs</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>30‑day Sales</th>
+                <th>On‑hand</th>
+                <th>Turnover</th>
+                <th>Suggestion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SKU-5512</td><td>2</td><td>240</td><td>0.01</td><td>Bundle with SKU‑1020</td>
+              </tr>
+              <tr>
+                <td>SKU-3301</td><td>4</td><td>140</td><td>0.03</td><td>Markdown 15%</td>
+              </tr>
+              <tr>
+                <td>SKU-9907</td><td>0</td><td>60</td><td>0.00</td><td>Flash sale / clearance</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- RIGHT: Visuals & Config -->
+      <div class="stack">
+        <div class="card" aria-label="Visuals">
+          <h2>Forecast & Aging</h2>
+          <div class="grid-2">
+            <div>
+              <div class="section-title muted">Stockout Risk – next 4 weeks</div>
+              <canvas id="stockoutChart" height="140"></canvas>
+            </div>
+            <div>
+              <div class="section-title muted">Inventory Aging (units)</div>
+              <canvas id="agingChart" height="140"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" aria-label="Reorder Points">
+          <h2>Dynamic Reorder Points</h2>
+          <p class="muted">Recomputed weekly using moving averages of sales velocity and lead times.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>ROP</th>
+                <th>Current</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>SKU-1029</td><td>42</td><td>18</td><td><span class="flag warn">Below ROP</span></td>
+              </tr>
+              <tr>
+                <td>SKU-2044</td><td>50</td><td>22</td><td><span class="flag warn">Below ROP</span></td>
+              </tr>
+              <tr>
+                <td>SKU-8800</td><td>30</td><td>46</td><td><span class="flag good">Healthy</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card" aria-label="Schedule & Log">
+          <h2>Schedule & Activity</h2>
+          <div class="grid-2">
+            <div>
+              <div class="section-title">Schedule</div>
+              <div class="list">
+                <div class="item"><strong>Daily</strong>: 07:00 – Pull inventory & sales</div>
+                <div class="item"><strong>Weekly</strong>: Mon 08:00 – Recalculate ROP</div>
+                <div class="item"><strong>Alerts</strong>: Immediate when below ROP</div>
+              </div>
+            </div>
+            <div>
+              <div class="section-title">Recent Activity</div>
+              <div class="list log">
+                <div class="item">14:00 – Generated restock list (3 SKUs). Email draft created.</div>
+                <div class="item">09:05 – Flagged slow mover SKU‑5512 (0 sales 14d).</div>
+                <div class="item">Yesterday – Aging report compiled (12 SKUs >60d).</div>
+                <div class="item">Mon – ROP recalculated using 7‑day MA.</div>
+              </div>
+            </div>
+          </div>
+          <div class="actions" style="margin-top:12px">
+            <button>Edit schedule</button>
+            <button class="secondary">Notification settings</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Stockout Risk Line Chart
+    const stockoutCtx = document.getElementById('stockoutChart');
+    if (stockoutCtx) {
+      new Chart(stockoutCtx, {
+        type: 'line',
+        data: {
+          labels: ['Week 1','Week 2','Week 3','Week 4'],
+          datasets: [{
+            label: 'At‑risk SKUs',
+            data: [5, 4, 3, 6],
+            borderColor: '#4b6b55',
+            backgroundColor: 'rgba(168,213,186,0.25)',
+            tension: 0.35,
+            fill: true,
+            pointRadius: 3
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display:false } },
+          scales: {
+            y: { beginAtZero:true, ticks:{ stepSize: 1 } },
+            x: { ticks:{ color:'#6b7280' } }
+          }
+        }
+      });
+    }
+
+    // Inventory Aging Bar Chart
+    const agingCtx = document.getElementById('agingChart');
+    if (agingCtx) {
+      new Chart(agingCtx, {
+        type: 'bar',
+        data: {
+          labels: ['<30d','30–60d','60–90d','>90d'],
+          datasets: [{
+            label: 'Units',
+            data: [220, 180, 120, 90],
+            backgroundColor: ['#ecfdf5','#e8f5e9','#eaf7f1','#f5fdf7'],
+            borderColor: '#d8f0dd',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { display:false } },
+          scales: {
+            y: { beginAtZero:true },
+            x: { ticks:{ color:'#6b7280' } }
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

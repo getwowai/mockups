@@ -51,11 +51,20 @@ const qnbTools: QNBTool[] = [
 
 export default function QNBTools() {
   return (
-    <div className="p-4 max-w-sm mx-auto space-y-6 font-sans bg-[#f9fafb] min-h-screen">
-      <div className="space-y-1 text-center">
-        <h1 className="text-xl font-bold text-[#004c3f]">Powered by QNB Bank</h1>
-        <p className="text-sm text-gray-600">Your store qualifies for these business tools</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-indigo-600 text-white py-5 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-1">🏦 Partner Services</h1>
+        <p className="text-indigo-100 text-sm">
+          Discover business tools and financial services to support your growth.
+        </p>
       </div>
+
+      <div className="p-4 max-w-sm mx-auto space-y-6 font-sans">
+        <div className="space-y-1 text-center">
+          <h2 className="text-xl font-bold text-[#004c3f]">Powered by QNB Bank</h2>
+          <p className="text-sm text-muted-foreground">Your store qualifies for these business tools</p>
+        </div>
 
       <div className="space-y-4">
         {qnbTools.map((tool, index) => (
@@ -97,6 +106,7 @@ export default function QNBTools() {
         <h4 className="text-sm font-semibold text-[#004c3f]">Need Help Choosing?</h4>
         <p className="text-xs text-gray-600 mb-2">Book a free financial review with a QNB advisor</p>
         <Button size="sm" className="bg-[#008060] text-white w-full">Book Call</Button>
+      </div>
       </div>
     </div>
   );

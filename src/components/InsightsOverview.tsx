@@ -50,11 +50,20 @@ const insightCategories: InsightCategory[] = [
 
 export default function InsightsOverview() {
   return (
-    <div className="p-4 max-w-sm mx-auto space-y-6">
-      <div className="text-center space-y-1">
-        <h1 className="text-xl font-bold">📊 Your Insights</h1>
-        <p className="text-sm text-muted-foreground">Explore AI insights by category</p>
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-indigo-600 text-white py-5 px-4 text-center">
+        <h1 className="text-2xl font-bold mb-1">📊 Your Insights</h1>
+        <p className="text-indigo-100 text-sm">
+          Explore AI insights by category to uncover opportunities and optimize performance.
+        </p>
       </div>
+
+      <div className="p-4 max-w-sm mx-auto space-y-6">
+        <div className="text-center space-y-1">
+          <h2 className="text-xl font-bold text-foreground">Insight Categories</h2>
+          <p className="text-sm text-muted-foreground">Tap any category to dive deeper</p>
+        </div>
 
       {/* Insights Categories */}
       <div className="grid grid-cols-1 gap-4">
@@ -84,6 +93,7 @@ export default function InsightsOverview() {
             </Card>
           </Link>
         ))}
+      </div>
       </div>
     </div>
   );
