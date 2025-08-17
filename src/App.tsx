@@ -10,9 +10,10 @@ import AgentDetail from './components/AgentDetail';
 import MissionCenter from './components/MissionCenter';
 import MissionPage from './components/MissionPage';
 import WeeklyRecap from './components/WeeklyRecap';
-import Progress from './components/Progress';
+
 import LessonsPage from './components/LessonsPage';
-import QNBTools from './components/QNBTools';
+import AdminAnalytics from './components/AdminAnalytics';
+import BrandAnalytics from './components/BrandAnalytics';
 import Header from './components/Header';
 
 function App() {
@@ -31,8 +32,8 @@ function App() {
             <Route path="/missions" element={<MissionCenter />} />
             <Route path="/missions/:category" element={<MissionPage />} />
             <Route path="/progress" element={<WeeklyRecap />} />
-            <Route path="/profile" element={<Progress />} />
-            <Route path="/partner" element={<QNBTools />} />
+            <Route path="/me" element={<AdminAnalytics />} />
+            <Route path="/brand" element={<BrandAnalytics />} />
           </Routes>
         </main>
         <BottomNav />

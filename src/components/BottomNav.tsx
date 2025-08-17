@@ -45,7 +45,7 @@ export function BottomNav() {
               onClick={() => setShowProfileMenu(!showProfileMenu)}
               className={cn(
                 "flex flex-col items-center justify-center w-full h-full text-sm transition-colors",
-                location.pathname === "/profile" || location.pathname === "/partner"
+                location.pathname === "/me" || location.pathname === "/brand"
                   ? "text-primary"
                   : "text-muted-foreground hover:text-primary"
               )}
@@ -60,18 +60,18 @@ export function BottomNav() {
             {showProfileMenu && (
               <div className="absolute bottom-full left-0 right-0 mb-2 bg-background border rounded-lg shadow-lg">
                 <Link
-                  to="/profile"
+                  to="/me"
                   className="block px-4 py-2 text-sm hover:bg-muted"
                   onClick={() => setShowProfileMenu(false)}
                 >
-                  User
+                  Me
                 </Link>
                 <Link
-                  to="/partner"
+                  to="/brand"
                   className="block px-4 py-2 text-sm hover:bg-muted"
                   onClick={() => setShowProfileMenu(false)}
                 >
-                  Partner
+                  Brand
                 </Link>
               </div>
             )}
