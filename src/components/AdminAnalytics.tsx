@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -51,9 +52,17 @@ interface Activity {
 }
 
 export default function AdminAnalytics() {
+  const navigate = useNavigate();
   const [dateRange, setDateRange] = useState('Last 30 days');
   const [segment, setSegment] = useState('All brands');
   const [searchTerm, setSearchTerm] = useState('');
+
+  const handleBrandChange = (brandName: string) => {
+    setSegment(brandName);
+    if (brandName !== 'All brands') {
+      navigate('/brand');
+    }
+  };
 
   const kpiData: KPIData[] = [
     { label: 'Active brands', value: '146', change: '+8% vs prior 30d', isPositive: true },
@@ -84,14 +93,14 @@ export default function AdminAnalytics() {
 
   const topBrands: Brand[] = [
     { name: 'HelioWear', queries: 2940, openRate: '58%', ctr: '16%', agentsConfigured: 4, actions: 210 },
-    { name: 'Vitrin', queries: 2510, openRate: '66%', ctr: '21%', agentsConfigured: 5, actions: 248, isHighlighted: true },
+    { name: 'Vitrine', queries: 2510, openRate: '66%', ctr: '21%', agentsConfigured: 5, actions: 248, isHighlighted: true },
     { name: 'LumaSkin', queries: 2340, openRate: '60%', ctr: '18%', agentsConfigured: 3, actions: 175 },
     { name: 'StrideCo', queries: 2020, openRate: '59%', ctr: '17%', agentsConfigured: 4, actions: 162 },
     { name: 'NovaGoods', queries: 1880, openRate: '61%', ctr: '19%', agentsConfigured: 4, actions: 154 },
   ];
 
   const recentActivities: Activity[] = [
-    { time: '14:03', brand: 'Vitrin', action: 'Created PO for 3 SKUs from Inventory agent' },
+    { time: '14:03', brand: 'Vitrine', action: 'Created PO for 3 SKUs from Inventory agent' },
     { time: '13:55', brand: 'StrideCo', action: 'Ran Pricing Strategist — 2 price increases scheduled' },
     { time: '13:20', brand: 'LumaSkin', action: 'Promo code "SUMMER15" created from insight' },
     { time: '12:41', brand: 'NovaGoods', action: 'Replenished stock for SKU‑8891' },
@@ -130,22 +139,26 @@ export default function AdminAnalytics() {
             </select>
             <select 
               value={segment} 
-              onChange={(e) => setSegment(e.target.value)}
+              onChange={(e) => handleBrandChange(e.target.value)}
               className="border rounded-md px-3 py-2 text-sm bg-background"
             >
               <option>All brands</option>
-              <option>New brands (≤30d)</option>
-              <option>Enterprise</option>
+              {topBrands
+                .slice()
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((brand, index) => (
+                  <option key={index} value={brand.name}>{brand.name}</option>
+                ))}
             </select>
             <input 
               type="search" 
-              placeholder="Search brand (e.g., Vitrin)"
+              placeholder="Search brand (e.g., Vitrine)"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="border rounded-md px-3 py-2 text-sm bg-background"
             />
             <button className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm hover:bg-primary/90">
-              View VITRIN
+              View
             </button>
           </div>
         </div>

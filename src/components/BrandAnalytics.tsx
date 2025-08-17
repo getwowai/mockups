@@ -188,11 +188,11 @@ export default function BrandAnalytics() {
     },
     {
       type: 'Tip',
-      message: 'Vitrin responds well to "Chat with Insight" (31% usage). Consider onboarding to Pricing agent.'
+      message: 'Vitrine responds well to "Chat with Insight" (31% usage). Consider onboarding to Pricing agent.'
     },
     {
       type: 'Benchmark',
-      message: 'Vitrin\'s OR 75% vs platform median 62% — top quartile.'
+      message: 'Vitrine\'s OR 75% vs platform median 62% — top quartile.'
     },
   ];
 
@@ -271,7 +271,7 @@ export default function BrandAnalytics() {
             <div className="w-9 h-9 bg-primary rounded-lg text-primary-foreground flex items-center justify-center font-bold">
               V
             </div>
-            <h1 className="text-2xl font-bold text-foreground">Brand Analytics — Vitrin</h1>
+            <h1 className="text-2xl font-bold text-foreground">Brand Analytics — Vitrine</h1>
           </div>
           <div className="flex flex-wrap gap-2">
             <select 
