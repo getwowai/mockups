@@ -3,13 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { 
   TrendingUp, 
   TrendingDown, 
-  Users, 
-  MessageSquare, 
-  Eye, 
-  MousePointer, 
   Download, 
-  BarChart3,
-  Settings
+  BarChart3
 } from 'lucide-react';
 import { Card } from './ui/card';
 
