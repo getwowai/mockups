@@ -14,6 +14,7 @@ import WeeklyRecap from './components/WeeklyRecap';
 import LessonsPage from './components/LessonsPage';
 import AdminAnalytics from './components/AdminAnalytics';
 import BrandAnalytics from './components/BrandAnalytics';
+import FinancialDashboard from './components/FinancialDashboard';
 import AuditPage from './components/AuditPage';
 import Header from './components/Header';
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="/audit" element={<AuditPage />} />
             <Route path="/me" element={<AdminAnalytics />} />
             <Route path="/brand" element={<BrandAnalytics />} />
+            <Route path="/backoffice" element={<FinancialDashboard />} />
           </Routes>
         </main>
         <BottomNav />

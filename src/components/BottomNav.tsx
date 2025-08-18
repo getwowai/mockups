@@ -45,7 +45,7 @@ export function BottomNav() {
               onClick={() => setShowProfileMenu(!showProfileMenu)}
               className={cn(
                 "flex flex-col items-center justify-center w-full h-full text-sm transition-colors",
-                location.pathname === "/me" || location.pathname === "/brand"
+                location.pathname === "/me" || location.pathname === "/brand" || location.pathname === "/backoffice"
                   ? "text-primary"
                   : "text-muted-foreground hover:text-primary"
               )}
@@ -79,6 +79,13 @@ export function BottomNav() {
                   onClick={() => setShowProfileMenu(false)}
                 >
                   Progress
+                </Link>
+                <Link
+                  to="/backoffice"
+                  className="block px-4 py-2 text-sm hover:bg-muted"
+                  onClick={() => setShowProfileMenu(false)}
+                >
+                  Backoffice
                 </Link>
               </div>
             )}
