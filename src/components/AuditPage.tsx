@@ -76,7 +76,7 @@ const KPICard: React.FC<KPICardProps> = ({ label, value, trend, isPositive }) =>
 const InteractiveLineChart: React.FC<{ data: MonthlyData[] }> = ({ data }) => {
   const formatTooltip = (value: number, name: string) => {
     if (name === 'revenue') {
-      return [`EGP ${value.toLocaleString()}`, 'Revenue'];
+      return [`SAR ${value.toLocaleString()}`, 'Revenue'];
     }
     return [value, name];
   };
@@ -125,7 +125,7 @@ const InteractiveBarChart: React.FC<{ data: any[]; xKey: string; yKey: string; c
 }) => {
   const formatTooltip = (value: number, name: string) => {
     if (name === 'revenue') {
-      return [`EGP ${value.toLocaleString()}`, 'Revenue'];
+      return [`SAR ${value.toLocaleString()}`, 'Revenue'];
     }
     return [value, name];
   };
@@ -178,7 +178,7 @@ const AuditPage: React.FC = () => {
   }, []);
 
   // Demo data
-  const currency = "EGP";
+  const currency = "SAR";
   const monthly24: MonthlyData[] = [
     { label: "Aug 23", revenue: 780000, orders: 350, discount: 0.16 },
     { label: "Sep 23", revenue: 810000, orders: 365, discount: 0.15 },
@@ -203,11 +203,11 @@ const AuditPage: React.FC = () => {
   ];
 
   const regions: Region[] = [
-    { region: "Cairo", revenue: 3900000, orders: 1700 },
-    { region: "Giza", revenue: 1600000, orders: 720 },
-    { region: "Alexandria", revenue: 1200000, orders: 520 },
-    { region: "Dakahlia", revenue: 600000, orders: 270 },
-    { region: "Sharqia", revenue: 480000, orders: 210 },
+    { region: "Riyadh", revenue: 3900000, orders: 1700 },
+    { region: "Jeddah", revenue: 1600000, orders: 720 },
+    { region: "Mecca", revenue: 1200000, orders: 520 },
+    { region: "Medina", revenue: 600000, orders: 270 },
+    { region: "Dammam", revenue: 480000, orders: 210 },
   ];
 
   // Calculations
