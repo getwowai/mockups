@@ -14,6 +14,7 @@ import WeeklyRecap from './components/WeeklyRecap';
 import LessonsPage from './components/LessonsPage';
 import AdminAnalytics from './components/AdminAnalytics';
 import BrandAnalytics from './components/BrandAnalytics';
+import AuditPage from './components/AuditPage';
 import Header from './components/Header';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <Route path="/missions" element={<MissionCenter />} />
             <Route path="/missions/:category" element={<MissionPage />} />
             <Route path="/progress" element={<WeeklyRecap />} />
+            <Route path="/audit" element={<AuditPage />} />
             <Route path="/me" element={<AdminAnalytics />} />
             <Route path="/brand" element={<BrandAnalytics />} />
           </Routes>

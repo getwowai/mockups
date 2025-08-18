@@ -1,4 +1,4 @@
-import { Home, BookOpen, Target, BarChart, User, Sparkles, ChevronDown, Bot } from "lucide-react";
+import { Home, BookOpen, Target, BarChart, User, Sparkles, ChevronDown, Bot, FileText } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "../lib/utils";
 import { useState } from "react";
@@ -9,7 +9,7 @@ const navItems = [
   { name: "Agents", icon: Bot, path: "/agents" },
   { name: "Missions", icon: Target, path: "/missions" },
   { name: "Lessons", icon: BookOpen, path: "/lessons" },
-  { name: "Progress", icon: BarChart, path: "/progress" },
+  { name: "Audit", icon: FileText, path: "/audit" },
 ];
 
 export function BottomNav() {
@@ -51,10 +51,10 @@ export function BottomNav() {
               )}
             >
               <div className="flex items-center gap-1">
-                <User className="h-5 w-5" />
+                <BarChart className="h-5 w-5" />
                 <ChevronDown className="h-4 w-4" />
               </div>
-              <span className="mt-1">Profile</span>
+              <span className="mt-1">Analytics</span>
             </button>
             
             {showProfileMenu && (
@@ -72,6 +72,13 @@ export function BottomNav() {
                   onClick={() => setShowProfileMenu(false)}
                 >
                   Brand
+                </Link>
+                <Link
+                  to="/progress"
+                  className="block px-4 py-2 text-sm hover:bg-muted"
+                  onClick={() => setShowProfileMenu(false)}
+                >
+                  Progress
                 </Link>
               </div>
             )}
